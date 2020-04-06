@@ -20,14 +20,13 @@
         return n - 4
 
 
-    times4 = Pipeable(multiply_by_4, name='times4')
-    plus12 = Pipeable(add_12, name='plus12')
-    halve  = Pipeable(divide_by_2, name='halve')
-    minus4 = Pipeable(lambda x: x - 4, name='minus4')
+    times4 = Pipeable(multiply_by_4)
+    plus12 = Pipeable(add_12)
+    halve  = Pipeable(divide_by_2)
+    minus4 = Pipeable(lambda x: x - 4) # Yes, lambdas work as well!
 
-
-    # 12            20 |     32 |    16 |     12
+    # BEHOLD
     result = times4(5) | plus12 | halve | minus4
 
     # The above call yields the same answer as...
-    minus4(divide_by_2(add_12(multiply_by_4(5))))
+    minus_4(divide_by_2(add_12(multiply_by_4(5))))
