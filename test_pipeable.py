@@ -1,3 +1,4 @@
+from functools import partial
 import pytest
 
 
@@ -49,3 +50,19 @@ def test_that_a_bare_pipeline_raises_an_exception():
     # This is not supported and will raise an exception
     with pytest.raises(BarePipelineDeclarationError):
         pipe = times4 | plus12 | halve | minus4
+
+
+def test_partials_seem_to_work_as_well():
+    times4 = Pipeable(multiply_by_4)
+    plus12 = Pipeable(add_12)
+    halve  = Pipeable(divide_by_2)
+    minus4 = Pipeable(lambda x: x - 4) # Yes, lambdas work as well!
+    
+    def add_a_b_c(a, b, c):
+        return a + b + c
+
+    single_arg_version = Pipeable(partial(add_a_b_c, b=9, c=14))
+    
+    pipe_result = times4(5) | plus12 | halve | minus4 | single_arg_version
+
+    assert pipe_result.value == 35.0 
