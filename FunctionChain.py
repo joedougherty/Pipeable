@@ -32,7 +32,7 @@ class FunctionChain:
         
         # Also: has a cute string representation
         >> print(special_op)
-        multiply_by_4() -> add_12() -> divide_by_2()
+        multiply_by_4 -> add_12 -> divide_by_2
     """
 
     def __init__(self, *functions):
@@ -53,4 +53,4 @@ class FunctionChain:
         return result
 
     def __repr__(self):
-        return " -> ".join(["{}()".format(f.__name__) for f in self.functions])
+        return " -> ".join(["{}".format(f.__name__) for f in self.functions])

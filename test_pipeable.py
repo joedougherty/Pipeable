@@ -2,7 +2,8 @@ from functools import partial
 import pytest
 
 
-from Pipeable import Pipeable, BarePipelineDeclarationError 
+from Pipeable import Pipeable, BarePipelineDeclarationError
+from FunctionChain import FunctionChain
 
 #
 # A handful of helpful functions
@@ -66,3 +67,19 @@ def test_partials_seem_to_work_as_well():
     pipe_result = times4(5) | plus12 | halve | minus4 | single_arg_version
 
     assert pipe_result.value == 35.0 
+
+
+def test_function_chain_does_what_it_says_on_the_box():
+    special_op = FunctionChain(
+        multiply_by_4, 
+        add_12, 
+        divide_by_2,
+    )
+    
+    # This call ...
+    fn_chain_result = special_op(5) 
+
+    # ... is functionally equivalent to:
+    nested_fn_call_result = divide_by_2(add_12(multiply_by_4(5)))
+
+    assert fn_chain_result == nested_fn_call_result
