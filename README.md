@@ -1,4 +1,4 @@
-### Pipeable: a Class Wrapper to make your functions magically pipeable ###
+## Pipeable: a Class Wrapper to make your functions magically pipeable ##
 
     
     from Pipeable import Pipeable
@@ -37,7 +37,7 @@
     pytest
 
 
-### GOTCHAS ###
+### ASPECTS TO NOTE  ###
 
 
 `Pipeable` does not support declaring a bare pipeline for later execution.
@@ -57,6 +57,32 @@ Instead, be sure to the call the first function in the pipeline like so:
 
     result = times4(5) | plus12 | halve | minus4
 
+---
+
+#### WHAT IF ONE OF THE FUNCTIONS I WANT TO MAKE `Pipeable` TAKES MULTIPLE ARGUMENTS ####
+
+Reach for `functools.partial`.
+
+
+Let's say you have a function that takes multiple required arguments:
+
+
+    def add_a_b_c(a, b, c):
+        return a + b + c
+
+
+Use `partial` to create a version with "frozen" args.
+
+
+    from functools import partial
+    
+
+    add_a_9_14_fn = partial(add_a_b_c, b=9, c=14)
+
+    add_a_9_14 = Pipeable(add_a_9_14_fn)
+
+    result = times4(5) | plus12 | halve | add_a_9_14
+    
 
 ### BUT I REALLY WANT TO DECLARE A FUNCTION PIPELINE AND CALL IT LATER, MAYBE ###
 
