@@ -32,12 +32,7 @@
     minus_4(divide_by_2(add_12(multiply_by_4(5))))
 
 
-### Running the tests ###
-
-    pytest
-
-
-### ASPECTS TO NOTE  ###
+### ASPECTS TO NOTE ###
 
 
 `Pipeable` does not support declaring a bare pipeline for later execution.
@@ -122,3 +117,10 @@ Okay, so we can't get it done with `Pipeable` but `FunctionChain` can do this:
     
         # ... is functionally equivalent to:
         divide_by_2(add_12(multiply_by_4(5)))
+
+
+### RUNNING THE TESTS ###
+
+    pytest
+
+
