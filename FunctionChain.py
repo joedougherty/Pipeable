@@ -2,7 +2,7 @@ class FunctionChain:
     """
     Chains together two or more functions together 
     and returns final result when called.
-    
+
         functions: 
             * must be named
             * must take *exactly one* required argument
@@ -23,13 +23,13 @@ class FunctionChain:
             add_12, 
             divide_by_2,
         )
-        
+
         # This call ...
+        
         special_op(5) 
-    
         # ... is functionally equivalent to:
         divide_by_2(add_12(multiply_by_4(5)))
-        
+
         # Also: has a cute string representation
         >> print(special_op)
         multiply_by_4 -> add_12 -> divide_by_2

@@ -3,6 +3,7 @@ import pytest
 
 
 from Pipeable import Pipeable, BarePipelineDeclarationError
+
 from FunctionChain import FunctionChain
 
 #

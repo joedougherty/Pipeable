@@ -10,7 +10,6 @@ class Pipeable:
         * can be either named, or anonymous
         * must take *exactly one* required argument
     """
-
     def __init__(self, fn):
         self.fn = fn
         self.value = None
