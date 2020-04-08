@@ -10,19 +10,21 @@ class Pipeable:
         * can be either named, or anonymous
         * must take *exactly one* required argument
     """
+
     def __init__(self, fn):
         self.fn = fn
         self.value = None
         self.called = False
-        self.head = False
 
     def __or__(self, other):
         if not self.called:
-            raise BarePipelineDeclarationError("Pipeable must be called at time of piping.")
+            raise BarePipelineDeclarationError(
+                "Pipeable must be called at time of piping."
+            )
 
         self.fn = other.fn
         self.value = self.fn(self.value)
-        return self 
+        return self
 
     def __call__(self, arg):
         self.called = True
