@@ -1,19 +1,25 @@
-from Pipeable import Pipeable
+import pytest
+
+
+from Pipeable import Pipeable, BarePipelineDeclarationError 
+
+#
+# A handful of helpful functions
+#
+def multiply_by_4(n):
+    return n * 4
+
+def add_12(n):
+    return n + 12
+
+def divide_by_2(n):
+    return n / 2
+
+def minus_4(n):
+    return n - 4
 
 
 def test_it_does_what_it_says_it_does_on_the_box():
-    def multiply_by_4(n):
-        return n * 4
-
-    def add_12(n):
-        return n + 12
-
-    def divide_by_2(n):
-        return n / 2
-
-    def minus_4(n):
-        return n - 4
-
     times4 = Pipeable(multiply_by_4)
     plus12 = Pipeable(add_12)
     halve  = Pipeable(divide_by_2)
@@ -26,3 +32,20 @@ def test_it_does_what_it_says_it_does_on_the_box():
     nested_call_result = minus_4(divide_by_2(add_12(multiply_by_4(5))))
 
     assert(pipe_result.value == nested_call_result)
+
+
+def test_call_behavior():
+    times4 = Pipeable(multiply_by_4)
+
+    assert(times4(4).value == 16.0)
+
+
+def test_that_a_bare_pipeline_raises_an_exception():
+    times4 = Pipeable(multiply_by_4)
+    plus12 = Pipeable(add_12)
+    halve  = Pipeable(divide_by_2)
+    minus4 = Pipeable(lambda x: x - 4) # Yes, lambdas work as well!
+
+    # This is not supported and will raise an exception
+    with pytest.raises(BarePipelineDeclarationError):
+        pipe = times4 | plus12 | halve | minus4
