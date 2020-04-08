@@ -59,7 +59,7 @@ Instead, be sure to the call the first function in the pipeline like so:
 
 ---
 
-#### WHAT IF ONE OF THE FUNCTIONS I WANT TO MAKE `Pipeable` TAKES MULTIPLE ARGUMENTS ####
+#### WHAT IF ONE OF THE FUNCTIONS I WANT TO MAKE `Pipeable` TAKES MULTIPLE ARGUMENTS? ####
 
 Reach for `functools.partial`.
 
