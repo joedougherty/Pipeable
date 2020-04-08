@@ -43,13 +43,13 @@
 `Pipeable` does not support declaring a bare pipeline for later execution.
 
 
-That is, this:
+That is:
 
 
     pipe = times4 | plus12 | halve | minus4
 
 
-raises a `(BarePipelineDeclarationError`.
+raises: `BarePipelineDeclarationError`.
 
 
 Instead, be sure to the call the first function in the pipeline like so:
