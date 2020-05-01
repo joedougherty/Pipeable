@@ -88,13 +88,13 @@ Okay, so we can't get it done with `Pipeable` but `FunctionChain` can do this:
     from FunctionChain import FunctionChain
 
 
-    Chains together two or more functions together 
+    Chains two or more functions together 
     and returns final result when called.
     
         functions: 
             * must be named
             * must take *exactly one* required argument
-            * ought to have explict return statements
+            * ought to have explicit return statements
             
         # Example code:
         def multiply_by_4(n):
