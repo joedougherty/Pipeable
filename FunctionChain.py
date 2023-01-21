@@ -3,10 +3,8 @@ class FunctionChain:
     Chains two or more functions together 
     and returns final result when called.
 
-        functions: 
-            * must be named
-            * must take *exactly one* required argument
-            * ought to have explicit return statements
+        functions must take *exactly one* argument.
+            
             
         # Example code:
         def multiply_by_4(n):
@@ -46,7 +44,7 @@ class FunctionChain:
     def __call__(self, arg):
         for idx, fn in enumerate(self.functions):
             if idx == 0:
-                result = fn(arg)
+                result = fn.__call__(arg)
             else:
                 result = fn(result)
 
