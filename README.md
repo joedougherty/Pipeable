@@ -91,11 +91,9 @@ Okay, so we can't get it done with `Pipeable` but `FunctionChain` can do this:
     Chains two or more functions together 
     and returns final result when called.
     
-        functions: 
-            * must be named
-            * must take *exactly one* required argument
-            * ought to have explicit return statements
-            
+        - functions must take *exactly one* required argument
+        - lambdas are supported    
+
         # Example code:
         def multiply_by_4(n):
             return n * 4
