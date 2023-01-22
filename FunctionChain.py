@@ -46,7 +46,7 @@ class FunctionChain:
             if idx == 0:
                 result = fn.__call__(arg)
             else:
-                result = fn(result)
+                result = fn.__call__(result)
 
         return result
 
